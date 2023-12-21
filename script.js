@@ -1,28 +1,24 @@
-
-let computerSelection;
+let playerScore = 0;
+let computerScore = 0;
+const resultDisplay = document.querySelector('#resultDisplay');
 
 const rockBut = document.querySelector('#rock');
 rockBut.addEventListener('click', () => {
-    computerSelection = getComputerChoice();
-    playRound(rockBut.value, computerSelection);
+    playRound(rockBut.value, getComputerChoice());
+    checkScore();
 });
 
 const paperBut = document.querySelector('#paper');
 paperBut.addEventListener('click', () => {
-    computerSelection = getComputerChoice();
-    playRound(paperBut.value, computerSelection);
+    playRound(paperBut.value, getComputerChoice());
+    checkScore();
 });
 
 const scissorsBut = document.querySelector('#scissors');
 scissorsBut.addEventListener('click', () => {
-    computerSelection = getComputerChoice();
-    playRound(scissorsBut.value, computerSelection);
+    playRound(scissorsBut.value, getComputerChoice());
+    checkScore();
 });
-
-const results = document.querySelector('#results');
-
-
-
 
 function getComputerChoice (){
     let randomNumber;
@@ -40,46 +36,41 @@ function getComputerChoice (){
 
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-    results.children[0].textContent = "your choice: " + playerSelection;
-    results.children[1].textContent = " computer choice: " + computerSelection;
+    resultDisplay.children[0].textContent = "your choice: " + playerSelection + " vs ";
+    resultDisplay.children[1].textContent = " computer choice: " + computerSelection;
 
-    
     if (playerSelection === computerSelection) {
-        results.children[2].textContent = " It's a tie!";
+        resultDisplay.children[2].textContent = " It's a tie!";
+        resultDisplay.children[3].textContent = "player score: " + playerScore + " computer score: " + computerScore;
+
         return "tie";
     } else if ((playerSelection === "Scissors" && computerSelection === "Paper") ||
         (playerSelection === "Paper" && computerSelection === "Rock") ||
         (playerSelection === "Rock" && computerSelection === "Scissors")) {
-        results.children[2].textContent = ` You Win! ${playerSelection} beats ${computerSelection}`;
-        return "win";
+            resultDisplay.children[2].textContent = ` You Win! ${playerSelection} beats ${computerSelection}`;
+            playerScore += 1;
+            resultDisplay.children[3].textContent = "player score: " + playerScore + " computer score: " + computerScore;
+
+            return "win";
     } else {
-        results.children[2].textContent = ` You Lose! ${computerSelection} beats ${playerSelection}`;
+        resultDisplay.children[2].textContent = ` You Lose! ${computerSelection} beats ${playerSelection}`;
+        computerScore += 1;
+        resultDisplay.children[3].textContent = "player score: " + playerScore + " computer score: " + computerScore;
+
         return "lose";
     } 
 }
 
-// function game(){
-
-//     let playerScore = 0;
-//     let computerScore = 0;
- 
-//     for (i = 0; i < 5;){
-//         console.log("round "+ (i + 1));
-//         let computerSelection = getComputerChoice();
-//         let playerSelection = prompt("round " + (i + 1));
-//         let result = playRound(playerSelection, computerSelection);
-
-//         if (result === "win") {
-//             playerScore += 1;
-//             i += 1;
-//         } else
-//         if (result === "lose"){
-//             computerScore += 1;
-//             i += 1;
-//         }
-
-//         if (i == 5) {
-//             alert("your score: " + playerScore + '. computer score: ' + computerScore)
-//         }
-//     }
-// }
+function checkScore() {
+    let totalRounds = playerScore + computerScore;
+    if (totalRounds === 5 && playerScore > computerScore) {
+        resultDisplay.children[2].textContent = "YOU ARE THE WINNER!";
+        playerScore = 0;
+        computerScore = 0;
+    }
+    if (totalRounds === 5 && computerScore > playerScore) {
+        resultDisplay.children[2].textContent = "COMPUTER IS THE WINNER!";
+        playerScore = 0;
+        computerScore = 0;
+    }
+}

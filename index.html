@@ -6,15 +6,18 @@
     <title>rock paper scissors</title>
     
 </head>
-<body style="text-align: center;">
-    <div id="results" style="padding-top: 20px; height: 150px;">
-        <p></p>
+<body style="display: flex; flex-direction: column; align-items: center;">
+    <div id="resultDisplay" style="padding-top: 30px; width: 400px; height: 120px; text-align: center;">
+        <span></span>
+        <span></span>
         <p></p>
         <p></p>
     </div>
-    <button id="rock" value="rock">rock</button>
-    <button id="paper" value="paper">paper</button>
-    <button id="scissors" value="scissors">scissors</button>
+    <div id="but-cont" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <button id="rock" value="rock">rock</button>
+        <button id="paper" value="paper">paper</button>
+        <button id="scissors" value="scissors">scissors</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
