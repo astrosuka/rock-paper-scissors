@@ -23,6 +23,7 @@ const results = document.querySelector('#results');
 
 
 
+
 function getComputerChoice (){
     let randomNumber;
     let computerChoice;
@@ -39,25 +40,20 @@ function getComputerChoice (){
 
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-    // console.log("your choice: " + playerSelection);
-    results.textContent = "your choice: " + playerSelection;
-    console.log("computer choice: " + computerSelection);
-    results.textContent += " computer choice: " + computerSelection;
+    results.children[0].textContent = "your choice: " + playerSelection;
+    results.children[1].textContent = " computer choice: " + computerSelection;
 
     
     if (playerSelection === computerSelection) {
-        // console.log("it's a tie!");
-        results.textContent += " It's a tie!";
+        results.children[2].textContent = " It's a tie!";
         return "tie";
     } else if ((playerSelection === "Scissors" && computerSelection === "Paper") ||
         (playerSelection === "Paper" && computerSelection === "Rock") ||
         (playerSelection === "Rock" && computerSelection === "Scissors")) {
-        // console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-        results.textContent += ` You Win! ${playerSelection} beats ${computerSelection}`;
+        results.children[2].textContent = ` You Win! ${playerSelection} beats ${computerSelection}`;
         return "win";
     } else {
-        // console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-        results.textContent += ` You Lose! ${computerSelection} beats ${playerSelection}`;
+        results.children[2].textContent = ` You Lose! ${computerSelection} beats ${playerSelection}`;
         return "lose";
     } 
 }
@@ -87,9 +83,3 @@ function playRound(playerSelection, computerSelection){
 //         }
 //     }
 // }
-
-// game();
-
-
-// let playerSelection = 'rock';
-// playRound(playerSelection, computerSelection);
