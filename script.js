@@ -1,6 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
-const resultDisplay = document.querySelector('#resultDisplay');
+const resultDisplay = document.querySelector('#result-display');
 
 const rockBut = document.querySelector('#rock');
 rockBut.addEventListener('click', () => {
@@ -20,18 +20,12 @@ scissorsBut.addEventListener('click', () => {
     checkScore();
 });
 
-function getComputerChoice (){
-    let randomNumber;
-    let computerChoice;
-    randomNumber = Math.floor(Math.random() * 3);
-    if (randomNumber === 0){
-        computerChoice = 'Rock';
-    } else if (randomNumber === 1){
-        computerChoice = 'Paper';
-    } else if (randomNumber === 2){
-        computerChoice = 'Scissors';
+function getComputerChoice(){
+    switch (Math.floor(Math.random() * 3)){
+        case 0: return 'Rock';
+        case 1: return 'Paper';
+        case 2: return 'Scissors';
     }
-    return computerChoice;
 }
 
 function playRound(playerSelection, computerSelection){

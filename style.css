@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#result-display {
+    padding-top: 30px;
+    width: 400px;
+    height: 120px;
+    text-align: center;
+}
+
+#but-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+}
